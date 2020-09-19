@@ -25,6 +25,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import com.melitest.simianchecker.dto.CheckDNARequest;
 import com.melitest.simianchecker.dto.CheckDNAResponse;
 import com.melitest.simianchecker.dto.StatsResponse;
+import com.melitest.simianchecker.service.SimianDNAService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -39,6 +40,9 @@ public class SimianDNAControllerTest {
 	
 	@Autowired
 	private ReactiveMongoTemplate mongoTemplate;
+	
+	@Autowired
+	private SimianDNAService simianDNAService;
 	
 	private StatsResponse dnaStats;
 	
@@ -125,6 +129,13 @@ public class SimianDNAControllerTest {
 		return requests;
 	}
 	
+	private CheckDNAResponse checkCheckDNAResponse (List<String> dnaSequence)
+	{
+		CheckDNAResponse response = new CheckDNAResponse();
+		response.setSimian(simianDNAService.isSimian(dnaSequence));
+		return response;
+	}
+	
 	@Test
 	@Order(1)
 	public void getDNAStats_OK_NoResponse ()
@@ -177,7 +188,7 @@ public class SimianDNAControllerTest {
 			webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 			.bodyValue(request)
 			.exchange()
-			.expectBody(CheckDNAResponse.class);
+			.expectBody(CheckDNAResponse.class).isEqualTo(checkCheckDNAResponse(request.getDna()));
 		});
 	}
 	
@@ -189,7 +200,7 @@ public class SimianDNAControllerTest {
 			webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 			.bodyValue(request)
 			.exchange()
-			.expectBody(CheckDNAResponse.class);
+			.expectBody(CheckDNAResponse.class).isEqualTo(checkCheckDNAResponse(request.getDna()));
 		});
 	}
 	

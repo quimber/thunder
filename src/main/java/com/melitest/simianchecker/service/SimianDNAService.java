@@ -15,18 +15,18 @@ public interface SimianDNAService {
 	
 	Mono<StatsResponse> getDNAStats ();
 	
-	public default boolean isSimian(List<String> dnaSquence) {		
-		char[][] dnaMatrix = toCharArray(dnaSquence);
+	public default boolean isSimian(List<String> dnaSequence) {		
+		char[][] dnaMatrix = toCharArray(dnaSequence);
 		boolean isSimianDNA = isSimianDNA(dnaMatrix);
 		return isSimianDNA;
 	}
 	
 	public default void validateDNARequest (CheckDNARequest request) throws IllegalArgumentException
 	{
-		List<String> dna = request.getDna();
-		int dnaSize = dna.size();
-		if (dnaSize > 0)
+		List<String> dna = request.getDna();	
+		if (dna != null && !dna.isEmpty())
 		{
+			int dnaSize = dna.size();
 			for (String dnaSequence : dna)
 			{
 				if (dnaSequence.length() != dnaSize)
