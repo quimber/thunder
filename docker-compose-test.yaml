@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 services:
 
@@ -10,8 +10,10 @@ services:
       - "27017:27017"
 
   web:
-    build: .
-    container_name: "simian-checker-app"
+    build:
+      context: .
+      dockerfile: Dockerfile-test
+    container_name: "simian-checker-app-test"
     environment:
       - WAIT_HOSTS=database:27017
       - WAIT_HOSTS_TIMEOUT=300
@@ -23,5 +25,5 @@ services:
       - "8082:8082"
     depends_on:
       - database
-    command: sh -c "/simianchecker/wait && java -jar /simianchecker/app.jar"
+    command: sh -c "/simianchecker/wait && /simianchecker/mvnw test"
 

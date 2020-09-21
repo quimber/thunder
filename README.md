@@ -6,7 +6,7 @@ SimianChecker is an API
 ## Setup
 
 **Docker and docker-compose** available in the host. Run:
-> docker-compose -f docker-compose.yaml
+> docker-compose -f docker-compose.yaml up -d
 
 ## Endpoint
 Once the command below finishes, the application will be available at "http:/host-ip:8082/".
