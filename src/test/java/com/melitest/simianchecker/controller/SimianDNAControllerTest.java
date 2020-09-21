@@ -106,14 +106,14 @@ class SimianDNAControllerTest {
 		humanDNAResponse = new CheckDNAResponse();
 		humanDNAResponse.setSimian(false);
 		
-		requestList = createRandomRequests (50);
+		requestList = createRandomRequests (25);
 		smallRequestList = createRandomRequests (10);
 	}
 	
 	private List<CheckDNARequest> createRandomRequests (int bound)
 	{
 		int dnaSize = new Random().nextInt(bound) + 1;
-		int requestCount = 50;
+		int requestCount = 20;
 		List<CheckDNARequest> requests = new ArrayList<>(requestCount);
 		for (int i = 0; i < requestCount; i++)
 		{
