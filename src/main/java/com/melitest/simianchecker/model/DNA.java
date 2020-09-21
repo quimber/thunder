@@ -9,31 +9,31 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class DNA {
 	
 	@Id
-	private Long _id;
+	private Long id;
 	
-	private List<String> dna;	
+	private List<String> dnaSequence;	
 
 	/**
 	 * @return _id
 	 */
 	public Long getId()
 	{
-		return _id;
+		return id;
 	}
 	
 	/**
 	 * @return DNA sequence of a simian
 	 */
-	public List<String> getDna() {
-		return dna;
+	public List<String> getDnaSequence() {
+		return dnaSequence;
 	}
 
 	/**
 	 * @param dna sequence
 	 */
-	public void setDna(List<String> dna) {
-		_id = (long) dna.hashCode();
-		this.dna = dna;
+	public void setDnaSequence(List<String> dna) {
+		id = (long) dna.hashCode();
+		this.dnaSequence = dna;
 	}	
 
 }

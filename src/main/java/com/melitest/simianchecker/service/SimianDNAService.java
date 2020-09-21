@@ -17,11 +17,10 @@ public interface SimianDNAService {
 	
 	public default boolean isSimian(List<String> dnaSequence) {		
 		char[][] dnaMatrix = toCharArray(dnaSequence);
-		boolean isSimianDNA = isSimianDNA(dnaMatrix);
-		return isSimianDNA;
+		return isSimianDNA(dnaMatrix);
 	}
 	
-	public default void validateDNARequest (CheckDNARequest request) throws IllegalArgumentException
+	public default void validateDNARequest (CheckDNARequest request)
 	{
 		List<String> dna = request.getDna();	
 		if (dna != null && !dna.isEmpty())
@@ -52,14 +51,7 @@ public interface SimianDNAService {
 		{
 			for (int j = 0; j < dnaMatrix[i].length; j++)
 			{
-				if (i + 3 < dnaMatrix[i].length)
-					resultCount += checkLineMatch(dnaMatrix, i, j)? 1 : 0;
-				if (j + 3 < dnaMatrix[i].length)
-					resultCount += checkCollumnMatch(dnaMatrix, i, j)? 1 : 0;
-				if (i + 3 < dnaMatrix[i].length && j + 3 < dnaMatrix[i].length)
-					resultCount += checkDiagonalMatch(dnaMatrix, i, j)? 1 : 0;
-				if (i - 3 >= 0 && j + 3 < dnaMatrix[i].length)
-					resultCount += checkInverseDiagonalMatch(dnaMatrix, i, j)? 1 : 0;
+				resultCount += countMatchSequenceLines(dnaMatrix, i, j);
 				
 				if (resultCount >= 2)
 				{
@@ -68,6 +60,20 @@ public interface SimianDNAService {
 			}
 		}
 		return false;
+	}
+
+	private int countMatchSequenceLines(char[][] dnaMatrix, int i, int j) {
+		int resultCount = 0;
+		if (i + 3 < dnaMatrix[i].length)
+			resultCount += checkLineMatch(dnaMatrix, i, j)? 1 : 0;
+		if (j + 3 < dnaMatrix[i].length)
+			resultCount += checkCollumnMatch(dnaMatrix, i, j)? 1 : 0;
+		if (i + 3 < dnaMatrix[i].length && j + 3 < dnaMatrix[i].length)
+			resultCount += checkDiagonalMatch(dnaMatrix, i, j)? 1 : 0;
+		if (i - 3 >= 0 && j + 3 < dnaMatrix[i].length)
+			resultCount += checkInverseDiagonalMatch(dnaMatrix, i, j)? 1 : 0;
+		
+		return resultCount;
 	}
 	
 	private char[][] toCharArray (List<String> dnaSquence)

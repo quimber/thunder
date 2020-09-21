@@ -25,6 +25,8 @@ import reactor.core.publisher.Mono;
 @Service
 public class SimianDNAServiceImpl implements SimianDNAService {
 	
+	private static final String COUNT = "count";
+
 	@Autowired
 	private SimianDNARepository simianDNARepository;
 	
@@ -41,40 +43,35 @@ public class SimianDNAServiceImpl implements SimianDNAService {
 				.map(this::mapCheckDNARequest)
 				.flatMap(dnaService::createDNA)
 				.flatMap(this::createSimianDNA)
-				.flatMap(this::checkDNA)
 				.map(this::mapResponse);
 	}
-
+	
 	@Override
+	@SuppressWarnings({ "unchecked" })
 	public Mono<StatsResponse> getDNAStats() {		
-		GroupOperation countGroup = Aggregation.group("isSimian").count().as("count");
+		GroupOperation countGroup = Aggregation.group("isSimian").count().as(COUNT);
 		Aggregation aggregation = Aggregation.newAggregation(countGroup);
 
 		return reactiveMongoTemplate.aggregate(aggregation, SimianDNA.class, Map.class)
-				.switchIfEmpty(Flux.just(new HashMap()))
+				.map(countGroupMap -> (Map<String, Object>) countGroupMap)
+				.switchIfEmpty(Flux.just(new HashMap<String, Object>()))
 				.buffer().last()
-		.map(this::mapGroupCountToStatsResponse);
+		.map(this::mapGroupCount);
 	}
 	
-	private StatsResponse mapGroupCountToStatsResponse (@SuppressWarnings("rawtypes") List<Map> resultList) {
-		StatsResponse response = new StatsResponse();
-		for (int i = 0; i < resultList.size() && i < 2; i++)
-		{
-			Map<?,?> countGroupMap = resultList.get(i);
-			Object isSimian = countGroupMap.get("_id");		
-			if (isSimian instanceof Boolean)
-			{
-				Object count = countGroupMap.get("count");
-				if ((Boolean) isSimian)
-				{
-					response.setCountSimianDna((Integer) count);
-				}
-				else 
-				{
-					response.setCountHumanDna((Integer) count);
-				}
-			}							
-		}
+	private StatsResponse mapGroupCount (List<Map<String, Object>> resultList) {
+		StatsResponse response = new StatsResponse();		
+		
+		resultList.stream()
+		.filter(countGroupMap -> countGroupMap.get("_id") instanceof Boolean && (Boolean) countGroupMap.get("_id"))
+		.map(countGroupMap -> (Integer) countGroupMap.get(COUNT))
+		.forEach(response::setCountSimianDna);
+		
+		resultList.stream()
+		.filter(countGroupMap -> countGroupMap.get("_id") instanceof Boolean && !(Boolean) countGroupMap.get("_id"))
+		.map(countGroupMap -> (Integer) countGroupMap.get(COUNT))
+		.forEach(response::setCountHumanDna);
+				
 		if (response.getCountHumanDna() != 0)
 		{
 		    response.setRatio(((float) response.getCountSimianDna() / response.getCountHumanDna()));
@@ -85,7 +82,7 @@ public class SimianDNAServiceImpl implements SimianDNAService {
 	private DNA mapCheckDNARequest (CheckDNARequest dnaRequest)
 	{
 		DNA dna = new DNA();
-		dna.setDna(dnaRequest.getDna());
+		dna.setDnaSequence(dnaRequest.getDna());
 		return dna;
 	}
 	
@@ -94,7 +91,10 @@ public class SimianDNAServiceImpl implements SimianDNAService {
 		return simianDNARepository.findByDnaId(dna.getId())
 		.switchIfEmpty(Mono.just(dna)
 				.map(this::mapSimianDNA)
-				.flatMap(simianDNARepository::save).doOnNext(simianDna -> simianDna.setNewDNA(true)))
+				.doOnNext(simianDna -> simianDna.setDnaObject(dna))
+				.doOnNext(this::checkDNA)
+				.flatMap(simianDNARepository::save)
+				.doOnNext(simianDna -> simianDna.setNewDNA(true)))
 		.doOnNext(simianDna -> simianDna.setDnaObject(dna));				
 	}
 	
@@ -105,15 +105,10 @@ public class SimianDNAServiceImpl implements SimianDNAService {
         return simianDNA;
 	}
 	
-	private Mono<SimianDNA> checkDNA (SimianDNA simianDNA)
+	private void checkDNA (SimianDNA simianDNA)
 	{
-		if (simianDNA.isSimian() == null)
-		{
-			List<String> dnaSquence = simianDNA.getDnaObject().getDna();
-			simianDNA.setSimian(isSimian(dnaSquence));
-			return simianDNARepository.save(simianDNA);
-		}
-		return Mono.just(simianDNA);
+		List<String> dnaSquence = simianDNA.getDnaObject().getDnaSequence();
+		simianDNA.setSimian(isSimian(dnaSquence));		
 	}
 	
 	private CheckDNAResponse mapResponse (SimianDNA simianDNA)

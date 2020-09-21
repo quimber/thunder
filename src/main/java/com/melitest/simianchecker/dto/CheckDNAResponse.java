@@ -8,7 +8,7 @@ public class CheckDNAResponse {
 	@JsonProperty(value = "is_simian")
 	private boolean isSimian;
 	
-	private transient boolean newDNA = false;
+	private boolean newDNA = false;
 
 	/**
 	 * @return true when inputed DNA is from simian
@@ -59,10 +59,9 @@ public class CheckDNAResponse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CheckDNAResponse other = (CheckDNAResponse) obj;
-		if (isSimian != other.isSimian)
-			return false;
-		return true;
+		
+		CheckDNAResponse other = (CheckDNAResponse) obj;		
+		return isSimian == other.isSimian;
 	}
 
 }

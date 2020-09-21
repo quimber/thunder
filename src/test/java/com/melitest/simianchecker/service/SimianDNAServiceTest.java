@@ -23,7 +23,7 @@ import com.melitest.simianchecker.exception.IllegalDNARequest;
 @TestInstance(Lifecycle.PER_CLASS)
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestPropertySource(locations="classpath:application-test.properties")
-public class SimianDNAServiceTest {
+class SimianDNAServiceTest {
 	
 	@Autowired
 	private SimianDNAService simianDNAService;
@@ -84,31 +84,31 @@ public class SimianDNAServiceTest {
 	}
 	
 	@Test
-	public void isSimian_valid_checkSimianDNA ()
+	void isSimian_valid_checkSimianDNA ()
 	{
 		Assertions.assertTrue(simianDNAService.isSimian(simianDNA.getDna()));
 	}
 	
 	@Test
-	public void isSimian_valid_checkHumanDNA ()
+	void isSimian_valid_checkHumanDNA ()
 	{
 		Assertions.assertFalse(simianDNAService.isSimian(humanDNA.getDna()));
 	}
 	
 	@Test
-	public void validateDNARequest_valid_simianDna ()
+	void validateDNARequest_valid_simianDna ()
 	{
 		Assertions.assertAll(() -> simianDNAService.validateDNARequest(simianDNA));
 	}
 	
 	@Test
-	public void validateDNARequest_valid_humanDna ()
+	void validateDNARequest_valid_humanDna ()
 	{
 		Assertions.assertAll(() -> simianDNAService.validateDNARequest(humanDNA));
 	}
 	
 	@Test
-	public void validateDNARequest_notValid_dnaWrongSize ()
+	void validateDNARequest_notValid_dnaWrongSize ()
 	{
 		Assertions.assertThrows(IllegalDNARequest.class,
 				() -> simianDNAService.validateDNARequest(invalidSizeDNA),
@@ -116,7 +116,7 @@ public class SimianDNAServiceTest {
 	}
 	
 	@Test
-	public void validateDNARequest_notValid_dnaCharSize ()
+	void validateDNARequest_notValid_dnaCharSize ()
 	{
 		Assertions.assertThrows(IllegalDNARequest.class,
 				() -> simianDNAService.validateDNARequest(invalidCharDNA),
@@ -124,7 +124,7 @@ public class SimianDNAServiceTest {
 	}
 	
 	@Test
-	public void validateDNARequest_notValid_emptyDna()
+	void validateDNARequest_notValid_emptyDna()
 	{
 		Assertions.assertThrows(IllegalDNARequest.class,
 				() -> simianDNAService.validateDNARequest(invalidEmptyDNA),
@@ -132,7 +132,7 @@ public class SimianDNAServiceTest {
 	}
 	
 	@Test
-	public void validateDNARequest_notValid_nullDna()
+	void validateDNARequest_notValid_nullDna()
 	{
 		Assertions.assertThrows(IllegalDNARequest.class,
 				() -> simianDNAService.validateDNARequest(invalidNullDNA),

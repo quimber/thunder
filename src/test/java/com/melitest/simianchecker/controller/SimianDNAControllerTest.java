@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -25,6 +27,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import com.melitest.simianchecker.dto.CheckDNARequest;
 import com.melitest.simianchecker.dto.CheckDNAResponse;
 import com.melitest.simianchecker.dto.StatsResponse;
+import com.melitest.simianchecker.exception.IllegalDNARequest;
 import com.melitest.simianchecker.service.SimianDNAService;
 
 @ExtendWith(SpringExtension.class)
@@ -33,7 +36,7 @@ import com.melitest.simianchecker.service.SimianDNAService;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestPropertySource(locations="classpath:application-test.properties")
 @TestMethodOrder(OrderAnnotation.class)
-public class SimianDNAControllerTest {
+class SimianDNAControllerTest {
 	
 	@Autowired
 	private WebTestClient webTestClient;
@@ -49,6 +52,14 @@ public class SimianDNAControllerTest {
 	private StatsResponse dnaEmptyStats;
 	
 	private CheckDNARequest simianDNA;
+	
+	private CheckDNARequest invalidCharDNA;
+	
+	private CheckDNARequest invalidSizeDNA;
+	
+	private CheckDNARequest invalidEmptyDNA;
+	
+	private CheckDNARequest invalidNullDNA;
 	
 	private CheckDNAResponse simianDNAResponse;
 	
@@ -77,6 +88,17 @@ public class SimianDNAControllerTest {
 		
 		simianDNA = new CheckDNARequest();
 		simianDNA.setDna(List.of("CTGAGA", "CTATGC", "TATTGT", "AGAGGG", "CCCCTA", "TCACTG"));
+		
+		invalidCharDNA = new CheckDNARequest();
+		invalidCharDNA.setDna(List.of("CTGAGA", "CTATGC", "TATTGT", "AGXGGG", "CCCCTA", "TCACTG"));
+		
+		invalidSizeDNA = new CheckDNARequest();
+		invalidSizeDNA.setDna(List.of("CTGAGA", "CTATGC", "TATTGT", "AGXGGG", "CCCCTA", "TCACTG", "TCACTG"));
+		
+		invalidEmptyDNA = new CheckDNARequest();
+		invalidEmptyDNA.setDna(List.of());
+		
+		invalidNullDNA = new CheckDNARequest();
 		
 		simianDNAResponse = new CheckDNAResponse();
 		simianDNAResponse.setSimian(true);
@@ -138,7 +160,7 @@ public class SimianDNAControllerTest {
 	
 	@Test
 	@Order(1)
-	public void getDNAStats_OK_NoResponse ()
+	void getDNAStats_OK_NoResponse ()
 	{
 		webTestClient.get().uri("/stats")
 		.accept(MediaType.APPLICATION_JSON)
@@ -149,7 +171,7 @@ public class SimianDNAControllerTest {
 	
 	@Test
 	@Order(2)
-	public void mapCheckDNAResponse_Created_ValidDNARequest ()
+	void mapCheckDNAResponse_Created_ValidDNARequest ()
 	{
 		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 		.bodyValue(simianDNA)
@@ -160,7 +182,7 @@ public class SimianDNAControllerTest {
 	
 	@Test
 	@Order(3)
-	public void getDNAStats_OK_ValidDNAStatsRequest ()
+	void getDNAStats_OK_ValidDNAStatsRequest ()
 	{
 		webTestClient.get().uri("/stats")
 		.accept(MediaType.APPLICATION_JSON)
@@ -171,7 +193,7 @@ public class SimianDNAControllerTest {
 	
 	@Test
 	@Order(4)
-	public void mapCheckDNAResponse_OK_ValidDNARequest ()
+	void mapCheckDNAResponse_OK_ValidDNARequest ()
 	{
 		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 		.bodyValue(simianDNA)
@@ -182,7 +204,7 @@ public class SimianDNAControllerTest {
 	
 	@Test
 	@Order(5)
-	public void mapCheckDNAResponse_Created_Many ()
+	void mapCheckDNAResponse_Created_Many ()
 	{
 		requestList.forEach(request -> {
 			webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
@@ -194,7 +216,7 @@ public class SimianDNAControllerTest {
 	
 	@Test
 	@Order(5)
-	public void mapCheckDNAResponse_Created_SmallList ()
+	void mapCheckDNAResponse_Created_SmallList ()
 	{
 		smallRequestList.forEach(request -> {
 			webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
@@ -205,8 +227,52 @@ public class SimianDNAControllerTest {
 	}
 	
 	@Test
+	@Order(6)
+	void mapCheckDNAResponse_Unprocessable_InvalidCharDNA ()
+	{					
+		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
+		.bodyValue(invalidCharDNA)
+		.exchange()
+		.expectStatus().isEqualTo(HttpStatus.UNPROCESSABLE_ENTITY)
+		.expectBody(IllegalDNARequest.class).value(Matchers.hasProperty("message", Matchers.equalTo("Invalid DNA sequence AGXGGG, it must contain only A, T, C or G.")));	
+	}
+	
+	@Test
+	@Order(6)
+	void mapCheckDNAResponse_Unprocessable_InvalidSizeDNA ()
+	{					
+		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
+		.bodyValue(invalidSizeDNA)
+		.exchange()
+		.expectStatus().isEqualTo(HttpStatus.UNPROCESSABLE_ENTITY)
+		.expectBody(IllegalDNARequest.class).value(Matchers.hasProperty("message", Matchers.equalTo("Invalid DNA sequence CTGAGA, it must have the same legth of number of sequences = "+7)));	
+	}
+	
+	@Test
+	@Order(6)
+	void mapCheckDNAResponse_Unprocessable_InvalidEmptyDNA ()
+	{					
+		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
+		.bodyValue(invalidEmptyDNA)
+		.exchange()
+		.expectStatus().isEqualTo(HttpStatus.UNPROCESSABLE_ENTITY)
+		.expectBody(IllegalDNARequest.class).value(Matchers.hasProperty("message", Matchers.equalTo("DNA cannot be empty.")));	
+	}
+	
+	@Test
+	@Order(6)
+	void mapCheckDNAResponse_Unprocessable_InvalidNullDNA ()
+	{					
+		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
+		.bodyValue(invalidNullDNA)
+		.exchange()
+		.expectStatus().isEqualTo(HttpStatus.UNPROCESSABLE_ENTITY)
+		.expectBody(IllegalDNARequest.class).value(Matchers.hasProperty("message", Matchers.equalTo("DNA cannot be empty.")));	
+	}
+	
+	@Test
 	@Order(7)
-	public void getDNAStats_OK_Many ()
+	void getDNAStats_OK_Many ()
 	{
 		webTestClient.get().uri("/stats")
 		.accept(MediaType.APPLICATION_JSON)

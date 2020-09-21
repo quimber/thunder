@@ -8,14 +8,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-@CompoundIndexes({
-    @CompoundIndex(name = "dnaId", def = "{'dnaId' : 1}", unique = true),
-    @CompoundIndex(name = "isSimian", def = "{'isSimian' : 1}")
-})
+@CompoundIndex(name = "dnaId", def = "{'dnaId' : 1}", unique = true)
+@CompoundIndex(name = "isSimian", def = "{'isSimian' : 1}")
 public class SimianDNA {
 
 	@Id

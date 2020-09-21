@@ -86,9 +86,8 @@ public class StatsResponse {
 			return false;
 		if (countSimianDna != other.countSimianDna)
 			return false;
-		if (Float.floatToIntBits(ratio) != Float.floatToIntBits(other.ratio))
-			return false;
-		return true;
+		
+		return Float.floatToIntBits(ratio) == Float.floatToIntBits(other.ratio);			
 	}	
 
 }
