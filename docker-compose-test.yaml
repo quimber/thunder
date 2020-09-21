@@ -25,5 +25,5 @@ services:
       - "8082:8082"
     depends_on:
       - database
-    command: sh -c "/simianchecker/wait && /simianchecker/mvnw test"
+    command: sh -c "/simianchecker/wait && /simianchecker/mvnw clean test"
 

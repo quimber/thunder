@@ -2,7 +2,7 @@ FROM maven:3.6.3-openjdk-11-slim as builder
 WORKDIR /simianchecker/
 COPY pom.xml /simianchecker/
 COPY src /simianchecker/src/
-RUN mvn install -Dmaven.test.skip=true
+RUN mvn clean install -Dmaven.test.skip=true
 
 FROM openjdk:11-jre-slim-buster
 WORKDIR /simianchecker/
