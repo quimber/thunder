@@ -37,6 +37,17 @@ The API will returns a JSON with a counting of simian DNAs and Human DNAs create
 
 > HTTP 200 {"count_simian_dna": 40, "count_human_dna": 100: "ratio": 0.4}
 
+The folder 'postman-tests' contains a collection of tests to executed.
+TIP: Create an environment in the model of 'AWS Environment.postman_environment.json'
+
+**Rule to match:** 
+POST → /simian
+{
+"dna": ["CTGAGA", "CTATGC", "TATTGT", "AGAGGG", "CCCCTA", "TCACTG"]
+}
+* A DNA is simian when two or more sequence of four of same letters
+  in any direction, horizontal, vertical and diagonals.
+* The letter can only be: (A, T, C, G)
 
 ## Swagger
 
