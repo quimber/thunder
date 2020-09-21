@@ -176,7 +176,7 @@ class SimianDNAControllerTest {
 		webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 		.bodyValue(simianDNA)
 		.exchange()
-		.expectStatus().isCreated()
+		.expectStatus().isOk()
 		.expectBody(CheckDNAResponse.class).isEqualTo(simianDNAResponse);
 	}
 	
@@ -210,6 +210,7 @@ class SimianDNAControllerTest {
 			webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 			.bodyValue(request)
 			.exchange()
+			.expectStatus().isOk()
 			.expectBody(CheckDNAResponse.class).isEqualTo(checkCheckDNAResponse(request.getDna()));
 		});
 	}
@@ -222,6 +223,7 @@ class SimianDNAControllerTest {
 			webTestClient.post().uri("/simian").accept(MediaType.APPLICATION_JSON)
 			.bodyValue(request)
 			.exchange()
+			.expectStatus().isOk()
 			.expectBody(CheckDNAResponse.class).isEqualTo(checkCheckDNAResponse(request.getDna()));
 		});
 	}

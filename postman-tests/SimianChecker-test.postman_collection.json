@@ -1040,6 +1040,101 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Random request test",
+			"item": [
+				{
+					"name": "Random create dna",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b4ff3484-ec92-48bf-954e-cbd697f8e64f",
+								"exec": [
+									"const dnaSize = 5 + Math.floor((400 - 5) * Math.random());",
+									"var dna = new Array();\t\t\t",
+									"for (var j = 0; j < dnaSize; j++)",
+									"{",
+									"\tlet dnaSequence = \"\";",
+									"\tfor (var k = 0; k < dnaSize; k++)",
+									"\t{",
+									"\t\tlet dnaType = 0 + Math.floor((4 - 0) * Math.random())",
+									"\t\tlet type = \"\";",
+									"\t\tif (dnaType == 0)",
+									"\t\t{\t\t\t",
+									"\t\t    type = \"A\";",
+									"        }",
+									"\t\telse if (dnaType == 1)",
+									"        {",
+									"\t\t\ttype = \"C\";",
+									"\t\t}",
+									"\t\telse if (dnaType == 2)",
+									"        {",
+									"\t\t\ttype = \"G\";",
+									"        }",
+									"\t\telse if (dnaType == 3)",
+									"\t\t{",
+									"\t\t\ttype = \"T\";\t\t",
+									"\t\t}\t\t",
+									"\t\tdnaSequence += type;",
+									"\t}",
+									"\tdna.push(new String(\"\\\"\"+dnaSequence+\"\\\"\"));",
+									"}",
+									"pm.collectionVariables.set(\"dna\", dna);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff0800ce-dc71-4d32-8ca5-9c9aa447e929",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201])",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"dna\": [{{dna}}]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "287775c0-23da-491d-9acc-eef9c8d0b5d1",
+			"key": "dna",
+			"value": ""
 		}
 	],
 	"protocolProfileBehavior": {}

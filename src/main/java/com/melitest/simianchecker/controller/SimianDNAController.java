@@ -3,7 +3,6 @@ package com.melitest.simianchecker.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,6 @@ import com.melitest.simianchecker.service.SimianDNAService;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -27,8 +25,7 @@ public class SimianDNAController {
 	private SimianDNAService simianDNAService;
 	
 	@ApiResponses(value = {
-		    @ApiResponse(code = 200, message = "Return the requested DNA, when the DNA sequence has already been created."),
-		    @ApiResponse(code = 201, message = "Create the requested DNA"),
+		    @ApiResponse(code = 200, message = "Return the requested DNA validation"),
 		    @ApiResponse(code = 422, message = "The input is not correct"),
 		    @ApiResponse(code = 500, message = "An error occured"),
 		})
@@ -50,10 +47,6 @@ public class SimianDNAController {
 	}
 	
 	private ResponseEntity<CheckDNAResponse> mapCheckDNAResponse (CheckDNAResponse response) {
-		if (response.isNewDNA())
-		{
-			return ResponseEntity.status(HttpStatus.CREATED).body(response);
-		}
 		return ResponseEntity.ok().body(response);
 	}
 

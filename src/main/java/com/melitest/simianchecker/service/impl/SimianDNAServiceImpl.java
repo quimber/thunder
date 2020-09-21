@@ -93,8 +93,7 @@ public class SimianDNAServiceImpl implements SimianDNAService {
 				.map(this::mapSimianDNA)
 				.doOnNext(simianDna -> simianDna.setDnaObject(dna))
 				.doOnNext(this::checkDNA)
-				.flatMap(simianDNARepository::save)
-				.doOnNext(simianDna -> simianDna.setNewDNA(true)))
+				.flatMap(simianDNARepository::save))
 		.doOnNext(simianDna -> simianDna.setDnaObject(dna));				
 	}
 	
@@ -115,7 +114,6 @@ public class SimianDNAServiceImpl implements SimianDNAService {
 	{
 		CheckDNAResponse response = new CheckDNAResponse();
 		response.setSimian(simianDNA.isSimian());
-		response.setNewDNA(simianDNA.isNewDNA());
 		return response;
 	}
 
