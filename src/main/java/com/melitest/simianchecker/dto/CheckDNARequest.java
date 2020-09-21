@@ -49,6 +49,11 @@ public class CheckDNARequest {
 		} else if (!dna.equals(other.dna))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "CheckDNARequest {dna: " + dna + "}";
 	} 
 
 }

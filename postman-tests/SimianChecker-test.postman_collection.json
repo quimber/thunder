@@ -1,0 +1,1046 @@
+{
+	"info": {
+		"_postman_id": "b273461e-febc-4d98-bbb4-d06c97509957",
+		"name": "SimianChecker test",
+		"description": "A mass test for the app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MassPost",
+			"item": [
+				{
+					"name": "SunnyCase1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7530eb2-f881-4890-b1fe-7e56b1ad1161",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GGAACAA\", \"GGTCGCC\", \"CCATGCT\", \"TATGTAC\", \"GTTAGGA\", \"TTTATGA\", \"ACTTTTT\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eba7f5ac-abda-4965-9e0b-9451a43d1d1f",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GCGCTCA\", \"TCTGTAA\", \"TACCGAC\", \"CGTCCAA\", \"TGTTTGC\", \"TGCTCTA\", \"GATTCTA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "289da825-b939-4967-9a9b-5eb306b75c8f",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"CAAGTTG\", \"CGATGGG\", \"AAACCCG\", \"AAGTGCG\", \"GAAGACT\", \"TGTGCTT\", \"TACGCGA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5acd819-ea9a-4b94-ad35-fba51ef45f81",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"TCAAAGC\", \"CATAAAA\", \"TGTCCAA\", \"GCACGGG\", \"CGCGCGC\", \"GACCGCT\", \"TTCAGTA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1ab1d9c7-dd56-4711-8334-a9e90e4c4df7",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"AGCCCGC\", \"CCCCTGC\", \"GAACAAC\", \"CACGGGA\", \"CGCAGAT\", \"CCTGGTC\", \"CTTAACA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a497ee3f-6f3c-4cb1-8c1c-a9cb56fb189d",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GGCCCTT\", \"TCCTGTT\", \"ACGCGCA\", \"ATGAACT\", \"CGAAAAC\", \"AGTGTGA\", \"GAGCTTC\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d5285f9-e112-47c5-bdc4-5430f2c259d7",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"TAAGTAG\", \"TGGCATT\", \"AACTAGG\", \"CTAATTC\", \"GATCAAC\", \"ACTTGTG\", \"TGTGCCA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "baa9f981-0261-4c88-975b-be43ea0a4d43",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"ATTTAAC\", \"ATCCATA\", \"GCAGGCG\", \"CTCAAAT\", \"TTCTCCA\", \"ATGAGCA\", \"CTCTTGA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b771462-0643-432b-90cb-746f74640b55",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"CTTCTTG\", \"TTGAAGC\", \"TCCTGGT\", \"CCTTGTC\", \"ACAAAGC\", \"CCACATT\", \"CAGCAAC\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02f7cbd6-ae92-4754-9d15-8d6d721f9611",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"CGAATAA\", \"GGATCCC\", \"AGTTTAA\", \"ATCGGCT\", \"AGTGACC\", \"GCATTTG\", \"TGGCCCC\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "235a86b3-e6d6-4ff3-b349-62427267104f",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GACAATT\", \"TAATATT\", \"AAGGTGA\", \"TCGGCGA\", \"GCATTGG\", \"TACTGGG\", \"CCGCACT\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "727402f3-6f73-4e4d-a9de-b5ad81e1f807",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"TTTCTTG\", \"TGATTTC\", \"GGCGTAC\", \"TATCTCT\", \"TACATCT\", \"CGGCTTT\", \"GGTAAGA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase13",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d29e556-bffa-4914-9f4d-361a7c2cf986",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"AACAGTC\", \"TGACTCT\", \"GGGAGAT\", \"GTTGGTA\", \"GTTTATT\", \"CAGAAAT\", \"TGATGAT\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase14",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3c5dae5f-3e7f-4248-8c1c-6d003a919084",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"CTGTGAG\", \"GAAGAAT\", \"CATAACT\", \"GACCGGC\", \"ATGTTCC\", \"CTCTAGC\", \"ATTTCGT\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase15",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7affdb28-5c7e-4668-a0b6-d6567b0f676e",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"AAGATTT\", \"AGAGGTT\", \"TGGCATC\", \"TCGCTGA\", \"GGGCAGG\", \"GGCTCAC\", \"ACAATAA\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase16",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7b10bd5c-5e5e-4378-b2b3-2d141059cf5e",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GCGCTAC\", \"GCGAAAG\", \"TTGGATT\", \"TCACTGG\", \"GTCACGT\", \"GGCCAGA\", \"CTTGAAC\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase17",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e592ff7d-f000-446e-89bb-368130dd7669",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GAGGCAG\", \"CAACTGA\", \"ACAAATG\", \"ACTGTCT\", \"GTTCGGC\", \"TTTACCA\", \"ACGCCGT\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase18",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ca35e40-8736-4c38-8bd2-8d1dee059574",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GGGATCA\",\n         \"AACATTA\",\n         \"GGCACAG\",\n         \"CATGCTC\",\n         \"CTAAAAT\",\n         \"AAATTAT\",\n         \"GTGGATG\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase19",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "377b7abf-67ed-47a9-a04a-d78c543ff7e8",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"GAATCTT\", \"TTTCCCT\", \"TACTGCA\", \"TCAACCT\", \"TTTCTAT\", \"CGTCGCC\", \"AAGTCTT\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SunnyCase20",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da4af4d9-e47d-4896-8e9b-ef2b60dafd5d",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"dna\": [\"ATAACAG\", \"TACGGGC\", \"AATCCGA\", \"AATGTGT\", \"CTTTCGT\", \"CCTATCC\", \"TAGCTCG\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SimpleTest",
+			"item": [
+				{
+					"name": "GetStats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45de69ac-585f-4ee5-8c34-a112f503e1cd",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/stats",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MeliRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f09d14d3-ceac-4c29-9a2b-21a2fa1ccc05",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dna\": [\"CTGAGA\", \"CTATGC\", \"TATTGT\", \"AGAGGG\", \"CCCCTA\", \"TCACTG\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MeliRequest human",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b8964b12-32b4-4da6-8f16-81ee51643ddf",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TTATTT\", \"AGACGG\", \"GCGTCA\", \"TCACTG\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BigRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70861fc4-cc68-41e4-ba9c-180ae4e7678c",
+								"exec": [
+									"pm.test(\"Response is OK\", function () ",
+									"{",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.is_simian).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"dna\": [\"AACTCATTTAAGGTGGCCCGTGCCCTCTTGTCGCGCCCAGTACCCGAGGATTGCGTACCAGGGTGTAGGCG\",\n\"GCACAGCAGCTCACATCCGTAATAAAAGTGTCGAGCTCCCGGGAGGTAGGCTCGGTCGATTCAACAACCCC\",\n\"GATTCGCCAGCGATTATATTGGATGGGGTCACACGCTCACCCCATCACTGCGTCCAGGCCGACCTGGTCAT\",\n\"GCGTGTTACGGATGCTAATTCACCCAGCGTGCCTCTCAGAACTACCAAGCCCCTACAAGACGTTCTCCCCT\",\n\"GTTATGTCTTTTCCTACCTAAATGTTGACATCCTGACCGTATAGGACAGGCGAATTGACACTGGGTCAGTC\",\n\"GCTTTGGATTTCGCCTAACTTCACAGTAGGCGCTCCGAAGCATCGTTATCAACCACACCACCCGGTCTTAT\",\n\"GTTATGACGGGGTGTCTAGAAAGTCACAAGGTGAGATCGACTTTTCGCTGGGATCTCCTATGTACTTTTTA\",\n\"ACAGCTCGCACTATCGACATGGCCATGAAGTCCGCCGGCGGGTAAGCTTAAGACAGTTCACAGGCAAATGT\",\n\"GAGTGGACAAGGATTAATAGGAAAGTTCCGAGATAAGAGCGCCAGGACGTAAACCCCCGGCTGGGATGATA\",\n\"CCGCGATGCAAGGTCTATTGGCTTAGGCGGCCATGCAATAGGGCACATGCTGATCGTCGGGCTGGAGTGAC\",\n\"TACGATGATTGGAAGTAGCTTAGCGCATCAGTGTGCTCGCCGAACGCTCGTTATTGCACATTCGGAGTTCC\",\n\"ACGATGGATCGACGCAGCGTATTTACCCGGGTAAAAATACACACGATCAGTCAACCTGGGTTTATGATGAC\",\n\"GTTGTGCGTATTAAATAATCCTCCTATTGGCACCTCATTTTGTCTAAGTCTCCTGCCCGGAAGGGTACCGG\",\n\"TAGGCCATCGTAAGTTACAGCTTATTGCTCGGATAGAAGTGTTTGTCTAAGGGTGAGAACAACTACTCCCC\",\n\"GGTGGTGCGACCGGGCGTGTGCGTTTCCGGAGATAACAACAATAGCACCTTCCTGCTCCCCACGAGGGATC\",\n\"ACTGTCAACAAACCAGTACGAGAACTCAACTCGTGCTCGGTGCAGGTCAACACAGACTACGTAGCTCGCAC\",\n\"GAGGGTCTCACGACCCACAGGAAGACGCCTGGCGGCCGTCGTTACGGTAATGTTTTTCCTTTGTCGCTCCT\",\n\"ATTGTCGTCATTGTGGCACGCTAAGAGGCCGAAAACTAACCGACCTGCCCGGGACACTTCATACAATCTAG\",\n\"CAGACAATAGAAACCGGACCTCGCAGTTGACTTGGATGGGCAGAAGACATGCCAAGAACCTGCGCGGATAT\",\n\"GTACAGAGCTTGGTGGAGTACGGATATTTTACCAATACAGAGTTTTCACTTGTCCAAGTGAGTGCGTCGTT\",\n\"GGCGCCTGAGCCGCACAGCAATATAAGGTGCCCACTAGTGAAGTCTTTGAAGCGTTATGGGGCTTGTGTCC\",\n\"GTCTTCTCTGGACAAAAGCTCTGAACGCGCACCAATCGGCTGGTAATAAGAATTCTGAGCGCTGCTTGAGG\",\n\"AGGATGTTTAGAGGGGAACTTGTGTTACGGGCGGACGCGAGTGCGCCGCGGGAAAGGCATAAGCGGCCCGT\",\n\"ACATTAACTATAGCTGGGAGCAAACTTTGCACTTTACTCCCATGGGTAACGTGGGTGATCAGTCTTTTCCT\",\n\"TTCTCACTTTCTTCACCACTTGCCGGTGAGGTCCTGAGAAGTGATTACCTGACTCATCGCTGGCGTCTGCA\",\n\"CCTAAAGGCTATCGTCGCTGGGACATAAGGCGATGTAAGCTACAGGGCCGTCGTTTCCGTCGGTGGAGGGC\",\n\"CGAGTCGAAGATATTTCACTGGGCGCCGTCGACCGGCGGTGCGCCCGGTGACGTCAGCGGCTGCTCATGGA\",\n\"ACAACGACCTGTCGCCAGCCCTTTCCTATGGAACGAGAGGACCCTCCTATCATGATAATTCCGTTACACGT\",\n\"AGTGTGAGCCAGTTAAATTCACTTGCCAACACCCACTGGGTGTATTAACAGCGGCAGCTCAGCTGTGGTCA\",\n\"AGTACACTCAAGTAGGATTGGCCACTCTTCCCGCTGCTAGCAGACTACCATAGGGTTCTCTAGTGCCAGAA\",\n\"TCACACTCAATTTTCGGAGACTTCGAACAGCAGAAATACGGCGAATGGGAAGTCTCGGCCATGTGGCCGCG\",\n\"CCACCTTCGCTATACTCTAAGTTATTGTCGAACGCGGCCAGTAGCAAAAGCAATTTTTTTACTTTCTTAGC\",\n\"TGGGACGTTCGAGTGACATTGGACCCGTTGCTCGCCCAGTTCAGCAATCATGTTGAAATTTTTGACCAGCA\",\n\"TCACGCTCGGGTAATGTAGACGCTGGTATCCCTATATTTCAGGGCGTACATTCTCTGACTGGACCTTACTA\",\n\"CAAAGGATCAACGCTTGGTGTAACGAGAACAGTCGGGGATTAACCGGGCCATGTCATCCGGAGGGGAGATT\",\n\"GTGCCGGCTTCACAAGACCAAGTGGAGTCTAAGACCCCGCCGCTTTAAACAACGATGCCTCGTGGTCGCTT\",\n\"TGATCGTTGGTTCCGTTACGCCGCCTACCCGAAAGAATGAGTGTTCTGATTCTAACCGAGTACGGCACCCA\",\n\"AAACAGGCCGCCCCCCCCCCACTGGCTCAGGCGGCTGACAATAGGTATTGCCCGTCACGACCAGAGTCCAG\",\n\"GGGGAAAGGACGCCACGCCTCCGGATGAGAGACAGTCATCAGTAATGTATGTAAAGTCTATTCGCCCGCGT\",\n\"ACGCCAGCCCTGTGGTTCCTTACACAGGGCGTAGTCACTACAGAAGTCGCCAACGGATTTATTAAACTTCT\",\n\"GTCAACTACTCTGCTCGCTGACCTATCTGCTGACACTCGGCGTTGCTCGTATGGGCCAAAGTGCGTGGATC\",\n\"ATCACTTTGGAACAGTCTTGCCCCGGGCCTCATCTGGCATAGTGCTGCCGGCAGTGTTAGCCCTACCGAAC\",\n\"CTCTGAGAACCCCCCGCTTGGTGGATAGACCCAATTCCCAACAGCAATTTGATAAAGCTCCAAGGTGACCG\",\n\"TGGGTCCCTTTGTACTCGGATTCCGCTACCCATATCACGCATCATGTCCTCCAGCCAGCACGGAGTGGGAG\",\n\"AGCATAGCTTAGGCCAACCTCGAGCAGTACAAAGGGAAGTCGAGAGCCGCTGCAAGTCGAAGTAACATTTG\",\n\"AGTGGCACGGGATGTCCAATATAGGACGACGGGCGTCTGGCCTTCCGCTTTAGGAGGCTGACAAGACAATA\",\n\"AGCGAGGGCTGGTACACTGCGGAAATGGATGGGAGAACGTGGAGGGAATATATCCGGTCCCCACGCAAGTT\",\n\"CTCACTAAAGCCCCGACCGTGGCGTATGCGACAATTGAGTATGCGTAATGGGCCCTTTCCAATCAAACACC\",\n\"CCGACGGGCGTATACCCCCAATATGTTGGGTGAAGTGTGCGACCACGGACACATGGGTCATTTAGCGTAGC\",\n\"ACGATTAGACGGGAATCGATCTTTTGTTTCCCATGATAAGTATTCTCGAGCTGGTCCTATGTCCATCAGTC\",\n\"TATAGGCGAAGGCCCGGCCATTGCTGATCAACAAGGGTACTGCCGTGAAGTCGCTTGGAAACAGTCTAGCT\",\n\"GCCTGACTTTTACCCGTTACACATCTCGTCGTGATCGTTGAAGTGTTGACGCGCACAACGCCTCGATCCAG\",\n\"AGCACGCGCAGGCTCATATAGATTTGCCAGATACCCCCAGGTACATATCACTATGTCGCAGAGGAGGTAGG\",\n\"AATACCAAGCCAGCGATACCTCCTCTAGGGTCGCGCAAAGATCAAGCGTACAGTGTACATTGCTAACGTTG\",\n\"TTTACGGTTTAATTTTAGTTGGGAGCTCTCTATTTCTACCCGTGCCCTAACGCTAAATACAACGAGAATTA\",\n\"CCCGTATCTATTGGGGAGTAAACTTAACGGAGAAACCGCGTCTCCGCGGCGGGGAACCTGGGCTAAAGGTA\",\n\"GTCTCAAGTCCGAACGGCGTACGTGGCCTCTCTGTTATCGCGCGGGGGCCAAAAAAGTACTCGTAACGCAG\",\n\"ACCATTTGCGACCTTGAAGATATTAATTTGAGGTCTTAAATTCTAAGGGGACGAGGACTTTAGGTTCTTGT\",\n\"CCGGTTCTTATCTGTGCGGCGACGTGTAAGAGCCGCGTTACGTCGTCATCGGAAACTCGAAACCTCTCCAA\",\n\"GGACCGGAACAACGACGTCTGGCTACAAAGGAACGCTACCCTTGTCGGTCAAGCCTAGGACACACCTTTCC\",\n\"GGAGCGTCCGGACAGTGAACCGGGACGTGATGAGCGGTATCTTCTTGTTCACATGCGATAGTTTTCTTGTC\",\n\"GATAATAATCCTCGTAGTTTTCATACGGGAGCCGCGTCTTGAAAATTGATAGACCAAACGCGAACCGGTGG\",\n\"GCTGCTTACTTCTACGGGTGGGTGAGCTCTCCGATGCATCACTTCAGATATTGGTCAGGGTGCGGCCACAT\",\n\"AATAGAGTAGTTCTGAACTCTCCTTTGCCACGGTCCTACCCATTAATATGTCACTGGACTCGTAGCACTGG\",\n\"CTAAGCACAGAAGATGAAGCCCGGCAGAACTGCTTAGGTCAATAATCAATCCAGGGACCCGAATCCGAGAA\",\n\"ACCCGGAAGGATTGTTCAGAATAAGGTCATGCTAGACGTTATCCCGCGTTCGTCGATGTGAGGGGAGCAGC\",\n\"GCTGGTCCAAAGGATATATGGGCACAATGGCGTGATGGTGTTGTTCTGCCCTGATACGACGCCAAAATCCG\",\n\"GCCAAAAGTTGCCACATCTTCAGACTCCGACCAGCTATCCGTTTGTTCTTTGCGGCGATGTCACAGTGCTA\",\n\"CCGACGGTGTAATACGCGGAAGATTCGTCTTCGGTGATCGGCATCAACGTTAGAGTAGGCGATCCATTCCC\",\n\"CGGCTCCCCCAAGGCCGTTGTCTAGGAGAGAGCCCAACCTTCAAACGCAGAGGAGTTAGACCTCCAGATTT\",\n\"TAATTCTATCATCGTTAGTTTATGGAGTTAGGGATGCTAGGCGGGCCAGCGACAGTTTCGATGCTCCGTAG\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apphost}}:{{appport}}/simian",
+							"host": [
+								"{{apphost}}"
+							],
+							"port": "{{appport}}",
+							"path": [
+								"simian"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

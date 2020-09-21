@@ -106,8 +106,8 @@ class SimianDNAControllerTest {
 		humanDNAResponse = new CheckDNAResponse();
 		humanDNAResponse.setSimian(false);
 		
-		requestList = createRandomRequests (25);
-		smallRequestList = createRandomRequests (10);
+		requestList = createRandomRequests (15);
+		smallRequestList = createRandomRequests (6);
 	}
 	
 	private List<CheckDNARequest> createRandomRequests (int bound)
