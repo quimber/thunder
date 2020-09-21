@@ -27,17 +27,15 @@ The application exposes these two endpoints
 The API returns a JSON result with "is_simian": boolean. If the DNA sequence *matches, is_simian will be true, otherwise
 will be false, example:
 
-> HTTP 200
-> {"is_simian": true}
-> HTTP 422, when the input is not correct
-> HTTP 500, when an error occured
+> HTTP 200 {"is_simian": true};
+> HTTP 422, when the input is not correct;
+> HTTP 500, when an error occured;
 
 http://host-ip:8082/stats
 
 The API will returns a JSON with a counting of simian DNAs and Human DNAs created, and the ratio between simian and human.
 
-> HTTP 200
-> {"count_simian_dna": 40, "count_human_dna": 100: "ratio": 0.4}
+> HTTP 200 {"count_simian_dna": 40, "count_human_dna": 100: "ratio": 0.4}
 
 
 ## Swagger
@@ -59,3 +57,7 @@ http://host-ip:8082/swagger-ui/index.html#/
 ## Future enhancements
 
 To enhance the metrics and log monitoring, the application could use an APM service (like datadog and new relic)
+
+## Demo
+
+http://18.228.108.235:8082/
