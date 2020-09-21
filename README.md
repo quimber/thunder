@@ -13,11 +13,11 @@ Once the command above finishes, the application will be available at "http:/hos
 The port can be changed by modifying the property **server.port=8082** and in the **docker-compose.yaml** in the application.properties.
 
 ### To run the application in locally (eclipse).
-> mvn eclipse:eclipse
-> import the project
-> start mongodb 
-> run application in the elcipse
-Change application.properties accordingly with the mongodb host and port
+#### mvn eclipse:eclipse
+#### import the project
+#### start mongodb 
+#### run application in the elcipse
+#### Change application.properties accordingly with the mongodb host and port
 
 ## Endpoints
 
