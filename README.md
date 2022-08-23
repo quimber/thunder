@@ -71,4 +71,4 @@ To enhance the metrics and log monitoring, the application could use an APM serv
 
 ## Demo
 
-http://18.228.108.235:8082/
+http://18.228.108.235:8082/# thunder
